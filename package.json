@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cucumberWithTS": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
-    "cucumberWithTSLogin": "cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts"
+    "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
+    "contactus_tests": "cucumber-js src/features/Contact_Us.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
+    "Login_tests_with_hooks": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/step-definitions/hooks/hooks.ts --require ./src/step-definitions/Loginpage_steps.ts --require ./src/utils/cucumber-timeout.ts",
+    "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts", 
+    "Contactus_tests_smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/Contact_Us.feature --tags '@smoke'",
+    "smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
+    "regression": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'", 
+    "ignore": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,5 @@
 import { Given, When, Then, World } from "@cucumber/cucumber";
 import { page, context, browser } from "./Base_file";
-import { pageFixture } from "../hooks/browserContextFixture";
 import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 

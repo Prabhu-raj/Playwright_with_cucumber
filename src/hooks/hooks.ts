@@ -1,29 +1,34 @@
 import { After, AfterAll, Before, BeforeAll } from "@cucumber/cucumber";
-import {Browser, chromium} from "@playwright/test";
+import { chromium } from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
+import { page, context, browser } from "../Base_file";
 
-
-let browser: Browser;
+// let browser: Browser;
 
 //BeforeAll hook: Runs once before all scenarios
-BeforeAll(async function(){
-    console.log("\nExecuting test suite...");
-})
+BeforeAll(async function () {
+  browser.instance = await chromium.launch({ headless: false });
+  console.log("\nExecuting test suite...");
+});
 
 //AfterAll hook: Runs once after all scenarios
-AfterAll(async function(){
-    console.log("\nFinished execution of test suite!");
-})
+AfterAll(async () => {
+    await browser.instance?.close();
+  console.log("\nFinished execution of test suite!");
+});
 
 // Before hook: Runs before each scenario
-Before(async function() {
-    browser = await chromium.launch({ headless: false });
-    pageFixture.context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
-    pageFixture.page = await pageFixture.context.newPage();
-})
+Before(async () => {
+  // browser.instance = await chromium.launch({ headless: false });
+  // pageFixture.context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+  // pageFixture.page = await pageFixture.context.newPage();
+  
+  context.instance = await browser.instance!.newContext(); // New context for each scenario
+  page.instance = await context.instance.newPage(); // New page for each scenario
+});
 
 // After hook: Runs after each scenario
-After(async function() {
-    await pageFixture.page.close();
-    await browser.close();
-})
+After(async () =>  {
+  await page.instance!.close();
+  await context.instance!.close();
+});

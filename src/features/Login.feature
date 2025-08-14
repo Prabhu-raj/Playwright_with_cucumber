@@ -1,9 +1,14 @@
+@regression @login
 Feature: Webdriveruniversity - Login Page
 
-    Scenario Outline: Validate valid & invalid login
+        Background: Preconditions
         Given I navigate to the WebdriverUniversity homepage
         When I Click on the Login Portal button
         And I switch to the new browser tab
+        
+    @smoke
+    Scenario Outline: Validate valid & invalid login
+        # Given I navigate to the webdriveruniversity Login page
         And I type a username <username>
         And I type a password <password>
         And I click on the login button

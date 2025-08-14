@@ -1,7 +1,7 @@
 import { Given, When } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { page, context, browser } from "./Base_file";
-import { pageFixture } from "../hooks/browserContextFixture";
+// import { pageFixture } from "./hooks/browserContextFixture";
 
 // let browser: Browser;
 // let context: BrowserContext;
@@ -36,9 +36,4 @@ When("I Click on the Login Portal button", async () => {
   await login_button.waitFor({ state: 'visible', timeout: 60000 });
   await login_button.click();
   // await page.instance!.pause();
-});
-
-When("I switch to the new browser tab", async () => {
-  page.instance = await context.instance!.waitForEvent("page");
-  await page.instance.bringToFront();
 });
