@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
+    "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
     "contactus_tests": "cucumber-js src/features/Contact_Us.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
-    "Login_tests_with_hooks": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/step-definitions/hooks/hooks.ts --require ./src/step-definitions/Loginpage_steps.ts --require ./src/utils/cucumber-timeout.ts",
-    "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts", 
+    "Login_tests_with_hooks": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/step-definitions/Loginpage_steps.ts --require ./src/utils/cucumber-timeout.ts",
+    "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html", 
     "Contactus_tests_smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/Contact_Us.feature --tags '@smoke'",
     "smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
     "regression": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'", 

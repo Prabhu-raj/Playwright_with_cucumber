@@ -1,7 +1,7 @@
 import { Given, When } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { page, context, browser } from "./Base_file";
-// import { pageFixture } from "./hooks/browserContextFixture";
+import { pageFixture } from "../hooks/browserContextFixture";
 
 // let browser: Browser;
 // let context: BrowserContext;
@@ -10,14 +10,14 @@ import { page, context, browser } from "./Base_file";
 const url = "https://www.webdriveruniversity.com/";
 
 Given("I navigate to the WebdriverUniversity homepage", async () => {
-  browser.instance = await chromium.launch({ headless: false });
-  context.instance = await browser.instance.newContext({
-    viewport: { width: 1920, height: 1080 },
-  });
-  page.instance = await context.instance.newPage();
+  // browser.instance = await chromium.launch({ headless: false });
+  // context.instance = await browser.instance.newContext({
+  //   viewport: { width: 1920, height: 1080 },
+  // });
+  // page.instance = await context.instance.newPage();
 
   // await pageFixture.page.goto(url);
-  await page.instance.goto(url);
+  await page.instance!.goto(url);
 });
 
 When("I click on the Contact us button", async () => {
