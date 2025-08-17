@@ -4,24 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "precucumber": "rimraf reports && mkdir reports",
     "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
-    "contactus_tests": "cucumber-js src/features/Contact_Us.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
-    "Login_tests_with_hooks": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/step-definitions/Loginpage_steps.ts --require ./src/utils/cucumber-timeout.ts",
-    "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html", 
-    "Contactus_tests_smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/Contact_Us.feature --tags '@smoke'",
-    "smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
-    "regression": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'", 
-    "ignore": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'"
+    "contactus_tests": "cucumber-js src/features/Contact_Us.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
+    "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
+    "smoke": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
+    "regression": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'",
+    "ignore": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@colors/colors": "^1.6.0",
     "@cucumber/cucumber": "^12.1.0",
     "@faker-js/faker": "^9.9.0",
     "@playwright/test": "^1.54.2",
     "@types/node": "^24.2.0",
-    "ts-node": "^10.9.2"
+    "dotenv": "^17.2.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "winston": "^3.17.0"
   }
 }

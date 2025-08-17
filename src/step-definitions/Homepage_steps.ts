@@ -2,6 +2,7 @@ import { Given, When } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { page, context, browser } from "./Base_file";
 import { pageFixture } from "../hooks/browserContextFixture";
+import logger from "../logger/logger";
 
 // let browser: Browser;
 // let context: BrowserContext;
@@ -17,17 +18,20 @@ Given("I navigate to the WebdriverUniversity homepage", async () => {
   // page.instance = await context.instance.newPage();
 
   // await pageFixture.page.goto(url);
+  // logger.info('Accessing URL: ' + URL)
+  
   await page.instance!.goto(url);
 });
 
 When("I click on the Contact us button", async () => {
   // await page.pause();
-  const contactUs_Button = page.instance!.getByRole("link", {
-    name: "CONTACT US Contact Us Form",
-  });
   // const contactUs_Button = pageFixture.page.getByRole("link", {
   //   name: "CONTACT US Contact Us Form",
   // });
+
+  const contactUs_Button = page.instance!.getByRole("link", {
+    name: "CONTACT US Contact Us Form",
+  });
   await contactUs_Button.click();
 });
 
