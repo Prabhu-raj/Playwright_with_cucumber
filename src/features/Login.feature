@@ -1,12 +1,11 @@
 @regression @login
 Feature: Webdriveruniversity - Login Page
 
-        Background: Preconditions
+    Background: Preconditions
         Given I navigate to the WebdriverUniversity homepage
         When I Click on the Login Portal button
         And I switch to the new browser tab
-        
-    @smoke
+
     Scenario Outline: Validate valid & invalid login
         # Given I navigate to the webdriveruniversity Login page
         And I type a username <username>
@@ -18,3 +17,9 @@ Feature: Webdriveruniversity - Login Page
             | username  | password     | expectedAlertText    |
             | webdriver | webdriver123 | validation succeeded |
             | webdriver | Password123  | validation failed    |
+
+        # @smoke
+        # Examples:
+        #     | username  | password     | expectedAlertText    |
+        #     | webdriver | webdriver123 | validation succeeded |
+        #     | webdriver | Password123  | validation failed    |

@@ -1,12 +1,12 @@
-import { Page } from "@playwright/test";
+// import { Page } from "@playwright/test";
 
-export function setGlobalSettings(page: Page) {
-    //Set Global 'navigation' timeout
-    page.setDefaultNavigationTimeout(50000); //wait up to 50 seconds
+// export function setGlobalSettings(page: Page) {
+//     //Set Global 'navigation' timeout
+//     page.setDefaultNavigationTimeout(50000); //wait up to 50 seconds
 
-    //Set Global 'command' timeout
-    page.setDefaultTimeout(30000); //wait up to 30 seconds
-}
+//     //Set Global 'command' timeout
+//     page.setDefaultTimeout(30000); //wait up to 30 seconds
+// }
 
 //Override global 'navigation' timeout - Command Example:
 // await page.goto('https://example.com', { timeout: 60000 });

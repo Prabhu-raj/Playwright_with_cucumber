@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "precucumber": "rimraf reports && mkdir reports",
-    "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
+    "cucumber": "npx cucumber-js && ts-node ./src/index.ts",
+    "all_tests": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json",
     "contactus_tests": "cucumber-js src/features/Contact_Us.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts",
     "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
     "smoke": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
@@ -23,7 +23,6 @@
     "@playwright/test": "^1.54.2",
     "@types/node": "^24.2.0",
     "dotenv": "^17.2.1",
-    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "winston": "^3.17.0"
   }

@@ -2,7 +2,7 @@ import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { page, context, browser } from "../step-definitions/Base_file";
-import { setGlobalSettings } from "../utils/playwright-timeouts";
+// import { setGlobalSettings } from "../utils/playwright-timeouts";
 
 // //Load env variables from .env file
 // import { config as loadEnv } from "dotenv"
@@ -34,7 +34,17 @@ import { setGlobalSettings } from "../utils/playwright-timeouts";
 //     return await launchBrowser.launch({ headless: config.headless});
 // }
 
-
+// async function initializePage(): Promise<void> {
+//     if(!browserInstance) {
+//         throw new Error('Browser instance is null');
+//     }
+//     pageFixture.context = await browserInstance.newContext({
+//         ignoreHTTPSErrors: true
+//     });
+//     pageFixture.page = await pageFixture.context.newPage();
+//     setGlobalSettings(pageFixture.page);
+//     await pageFixture.page.setViewportSize({width: config.width, height: config.height});
+// }
 
 // let browser: Browser;
 
