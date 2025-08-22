@@ -7,7 +7,7 @@
     },
     "include": [
         "src/**/*.ts"
-, "src/step-definitions/hooks/browserContextFixture.ts"    ],
+, "src/logger/browserContextFixture.ts"    ],
     "exclude": [
         "node_modules"
     ]

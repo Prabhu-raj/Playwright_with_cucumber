@@ -1,8 +1,8 @@
 import { Given, When } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { page, context, browser } from "./Base_file";
-import { pageFixture } from "../hooks/browserContextFixture";
-import logger from "../logger/logger";
+// import { pageFixture } from "../logger/browserContextFixture";
+// import logger from "../logger/logger";
 
 // let browser: Browser;
 // let context: BrowserContext;

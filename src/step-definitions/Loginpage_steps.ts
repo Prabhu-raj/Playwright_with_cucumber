@@ -5,12 +5,12 @@ import { expect } from "@playwright/test";
 
 let alertText: string;
 
-Given("I navigate to the webdriveruniversity Login page", async () => {
-  await page.instance!.goto(
-    "https://www.webdriveruniversity.com/Login-Portal/index.html"
-  );
-  // await page.instance!.waitForTimeout(2000);
-});
+// Given("I navigate to the WebdriverUniversity Homepage", async () => {
+//   await page.instance!.goto(
+//     "https://www.webdriveruniversity.com/Login-Portal/index.html"
+//   );
+//   // await page.instance!.waitForTimeout(2000);
+// });
 
 When("I type a username {word}", async (userName) => {
   await page

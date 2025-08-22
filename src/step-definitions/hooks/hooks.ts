@@ -1,7 +1,7 @@
 import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/test";
-import { pageFixture } from "./browserContextFixture";
-import { page, context, browser } from "../step-definitions/Base_file";
+// import { pageFixture } from "../../logger/browserContextFixture";
+import { page, context, browser } from "../Base_file";
 // import { setGlobalSettings } from "../utils/playwright-timeouts";
 
 // //Load env variables from .env file
@@ -73,7 +73,7 @@ Before(async function () {
 AfterAll(async function () {
   await browser.instance?.close();
   console.log("\nFinished execution of test suite!");
-  process.exit(0); // Forces Node to kill all Chrome child processes
+  // process.exit(0); // Forces Node to kill all Chrome child processes
 });
 
 // After hook: Runs after each scenario

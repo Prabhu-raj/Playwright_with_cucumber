@@ -20,9 +20,7 @@ const common = `\
     --require ./src/**/hooks/hooks.ts \
     --require src/step-definitions/**/*.ts \
     --require src/**/**/**/**/utils/cucumber-timeout.ts \
-    src/features/**/*.feature \
-    -f json:./reports/report.json \
-   --format html:./reports/report.html`;
+    src/features/**/*.feature`;
 
 //Define an interface for the profiles object
 //It defines an interface where each key is a string and its value is also a string
