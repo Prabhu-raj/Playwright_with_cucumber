@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config ({ path: './env/.env'});
 
 // Setting retry value from environment variables or defaulting to '0'
-const parallelValue = process.env.PARALLEL || '3';
+const parallelValue = process.env.PARALLEL || '1';
 const retryValue = process.env.RETRY || '0';
 
 

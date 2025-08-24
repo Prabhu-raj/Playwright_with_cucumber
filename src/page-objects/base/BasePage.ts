@@ -37,7 +37,7 @@ export class BasePage {
     await context.instance!.waitForEvent("page")
 
     //Retrieve all current open pages (tabs)
-    const allPages = await this.page.context().pages();
+    const allPages = await context.instance!.pages();
 
     //Assign the most recent tab to pageFixture.page
     page.instance = allPages[allPages.length - 1];
