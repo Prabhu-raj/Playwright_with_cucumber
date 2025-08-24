@@ -2,6 +2,8 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { page, context, browser } from "./Base_file";
 import { expect } from "@playwright/test";
+import { CucumberWorld } from "./world/CucumberWorld";
+import logger from "../logger/logger";
 
 let alertText: string;
 
@@ -13,13 +15,11 @@ let alertText: string;
 // });
 
 When("I type a username {word}", async (userName) => {
-  await page
-    .instance!.getByRole("textbox", { name: "Username" })
-    .fill(userName);
-  // await page.instance!.waitForTimeout(1000);
+  await page.instance!.getByRole("textbox", { name: "Username" }).fill(userName);
 
   // await page.instance?.pause();
 });
+
 
 When("I type a password {word}", async (password) => {
   await page

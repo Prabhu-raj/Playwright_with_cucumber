@@ -2,6 +2,10 @@ import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/test";
 // import { pageFixture } from "../../logger/browserContextFixture";
 import { page, context, browser } from "../Base_file";
+import { PageManager } from "../../page-objects/base/PageMangager";
+import { HomePage } from "../../page-objects/HomePage";
+import { contactUs } from "../../page-objects/ContactUsPage";
+
 // import { setGlobalSettings } from "../utils/playwright-timeouts";
 
 // //Load env variables from .env file
@@ -67,6 +71,11 @@ Before(async function () {
   // });
   page.instance = await context.instance!.newPage();
   (this as any).page = page.instance;
+
+  this.pageManager = new PageManager();
+  this.basePage = this.pageManager.createBasePage();
+  this.homePage = this.pageManager.createHomePage();
+  this.contactUs = this.pageManager.createContactUspage();
 });
 
 //AfterAll hook: Runs once after all scenarios

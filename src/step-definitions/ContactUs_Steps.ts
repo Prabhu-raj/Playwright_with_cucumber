@@ -2,9 +2,12 @@ import { Given, When, Then, World } from "@cucumber/cucumber";
 import { page, context, browser } from "./Base_file";
 import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
+import { CucumberWorld } from "./world/CucumberWorld";
+import logger from "../logger/logger";
 
 
-When("I type a First name", async () => {
+When("I type a First name", async function (this: CucumberWorld) {
+    logger.info(`Base URL stored in Cucumber world: ${this.getURL()}`)
     const fillFirstName = page.instance!.getByRole("textbox", { name: "First Name" });
     await fillFirstName.fill("Prabhu");
 

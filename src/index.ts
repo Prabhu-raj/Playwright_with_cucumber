@@ -1,26 +1,23 @@
 import { exec } from "child_process";
-// import dotenv from 'dotenv';
-// dotenv.config ({ path: './env/.env'});
+import dotenv from 'dotenv';
+dotenv.config ({ path: './env/.env'});
 
-// const retryValue = process.env.RETRY || '1';
+// Setting retry value from environment variables or defaulting to '0'
+const parallelValue = process.env.PARALLEL || '3';
+const retryValue = process.env.RETRY || '0';
 
 
 //Define a common command string for running cucumber tests
-// const common = `./src/features/*.feature \
-//   --require-module ts-node/register \
-//   --require ./src/step-definitions/**/**/*.ts \
-//   --require ./src/utils/cucumber-timeout.ts \
-//   -f json:./reports/report.json \
-//   --format html:./reports/report.html \
-//   --retry ${retryValue} \
-//   --tags "not @ignore"`;
+const common = `./src/features/*.feature \
+  --require-module ts-node/register \
+  --require ./src/step-definitions/**/**/*.ts \
+  --require ./src/utils/cucumber-timeout.ts \
+  -f json:./reports/report.json \
+  --format html:./reports/report.html \
+  --parallel ${parallelValue} \
+  --retry ${retryValue} \
+  --tags "not @ignore"`;
 
-const common = `\
-    --require-module ts-node/register \
-    --require ./src/**/hooks/hooks.ts \
-    --require src/step-definitions/**/*.ts \
-    --require src/**/**/**/**/utils/cucumber-timeout.ts \
-    src/features/**/*.feature`;
 
 //Define an interface for the profiles object
 //It defines an interface where each key is a string and its value is also a string
