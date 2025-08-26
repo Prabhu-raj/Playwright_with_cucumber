@@ -2,7 +2,8 @@ import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { page, context, browser } from "../../step-definitions/Base_file";
 import { HomePage } from "../HomePage";
-import { contactUs } from "../ContactUsPage";
+import { ContactUsPage } from "../ContactUsPage";
+import { LoginPage } from "../LoginPage";
 
 export class PageManager {
     get page(): Page {
@@ -18,6 +19,10 @@ export class PageManager {
     }
 
     createContactUspage() {
-        return new contactUs();
+        return new ContactUsPage();
+    }
+
+    createLoginPage() {
+        return new LoginPage();
     }
 }

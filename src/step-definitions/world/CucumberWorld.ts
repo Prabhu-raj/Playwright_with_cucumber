@@ -2,14 +2,16 @@ import { World, setWorldConstructor, IWorldOptions } from "@cucumber/cucumber";
 import { PageManager } from "../../page-objects/base/PageMangager";
 import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
-import { contactUs } from "../../page-objects/ContactUsPage";
+import { ContactUsPage } from "../../page-objects/ContactUsPage";
+import { LoginPage } from "../../page-objects/LoginPage";
 
 
 export class CucumberWorld extends World {
     public pageManager: PageManager;
     public basePage: BasePage;
     public homePage: HomePage;
-    public contactUs: contactUs;
+    public contactUsPage: ContactUsPage;
+    public loginPage: LoginPage;
 
     //Base URL
     private url?: string;
@@ -26,7 +28,8 @@ export class CucumberWorld extends World {
         this.pageManager = new PageManager(); // Initialize PageManager
         this.basePage = this.pageManager.createBasePage();
         this.homePage = this.pageManager.createHomePage();
-        this.contactUs = this.pageManager.createContactUspage();
+        this.contactUsPage = this.pageManager.createContactUspage();
+        this.loginPage = this.pageManager.createLoginPage();
     }
 
 

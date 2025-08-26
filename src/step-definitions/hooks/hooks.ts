@@ -4,7 +4,7 @@ import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/tes
 import { page, context, browser } from "../Base_file";
 import { PageManager } from "../../page-objects/base/PageMangager";
 import { HomePage } from "../../page-objects/HomePage";
-import { contactUs } from "../../page-objects/ContactUsPage";
+import { ContactUsPage } from "../../page-objects/ContactUsPage";
 
 // import { setGlobalSettings } from "../utils/playwright-timeouts";
 
@@ -75,7 +75,9 @@ Before(async function () {
   this.pageManager = new PageManager();
   this.basePage = this.pageManager.createBasePage();
   this.homePage = this.pageManager.createHomePage();
-  this.contactUs = this.pageManager.createContactUspage();
+  this.contactUsPage = this.pageManager.createContactUspage();
+  this.loginPage = this.pageManager.createLoginPage();
+
 });
 
 //AfterAll hook: Runs once after all scenarios
