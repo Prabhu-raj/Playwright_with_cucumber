@@ -21,7 +21,7 @@ let alertText: string;
 // });
 
 When("I type a username {word}", async function (this: CucumberWorld, userName) {
-  await page.instance!.waitForTimeout(1000);
+  // await page.instance!.waitForTimeout(1000);
   await this.loginPage.typeUsername(userName);
 
   // await page.instance?.pause();
@@ -30,7 +30,7 @@ When("I type a username {word}", async function (this: CucumberWorld, userName) 
 
 When("I type a password {word}", async function (this: CucumberWorld, password) {
   // await page.instance!.getByRole("textbox", { name: "Password" }).fill(password);
-  await page.instance!.waitForTimeout(1000);
+  // await page.instance!.waitForTimeout(1000);
 
   await this.loginPage.typePassword(password);
 

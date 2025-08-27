@@ -47,6 +47,6 @@ Feature: WebdriverUniversity.com - Contact Us Page
 
         Examples:
             | firstName | lastName | emailAddress              | comment                 | message                      |
-            | John      | Jones    | john_jones@example.com    | Hello world?            | Thank You for your Message!  |
+            | John      | Jones    | john_jones@example.com    | Hello world?            | Thank You for your Message! |
             | Mia       | Carter   | mia_carter123@example.com | Test123 Test123         | Thank You for your Message!  |
             | Grace     | Hudson   | grace_hudson              | Do you create websites? | Error: Invalid email address |
