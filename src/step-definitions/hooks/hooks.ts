@@ -76,6 +76,7 @@ Before(async function () {
   this.homePage = this.pageManager.createHomePage();
   this.contactUsPage = this.pageManager.createContactUspage();
   this.loginPage = this.pageManager.createLoginPage();
+  this.signupPageReal = this.signupPageReal.createSignupPageReal();
 
 });
 
