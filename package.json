@@ -10,7 +10,8 @@
     "Login_tests": "cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/**/**/**/**/utils/cucumber-timeout.ts --format progress --format json:reports/report.json --format html:./reports/report.html",
     "smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
     "regression": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'",
-    "ignore": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'"
+    "ignore": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'",
+    "real": "cucumber-js src/features/**/Singuppage.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html"
   },
   "keywords": [],
   "author": "",
