@@ -7,6 +7,8 @@ export const context: { instance?: BrowserContext } = {};
 export const page: { instance?: Page } = {};
 export const expect: { instance?: Expect } = {};
 
+
+
 /*When("I switch to the new browser tab", async () => {
    page.instance = await context.instance!.waitForEvent("page");
    await page.instance.bringToFront();

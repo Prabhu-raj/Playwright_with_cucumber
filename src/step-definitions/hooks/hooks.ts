@@ -56,8 +56,7 @@ import { ContactUsPage } from "../../page-objects/ContactUsPage";
 BeforeAll(async function () {
   console.log("Launching single Chrome instance...and Executing test suite...");
   browser.instance = await chromium.launch({ headless: false });
-  context.instance = await browser.instance.newContext({
-    viewport: { width: 1920, height: 1080 },
+  context.instance = await browser.instance.newContext({viewport: { width: 1920, height: 1080 },
   });
   
   page.instance = await context.instance.newPage();
@@ -87,7 +86,7 @@ AfterAll(async function () {
   // process.exit(0); // Forces Node to kill all Chrome child processes
 });
 
-// After hook: Runs after each scenario
+// // After hook: Runs after each scenario
 After(async function ({ pickle, result }) {
   if (result?.status === Status.FAILED) {
     if (page.instance) {

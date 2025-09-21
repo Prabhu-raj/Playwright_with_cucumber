@@ -4,8 +4,10 @@ import { page, context, browser } from "../../step-definitions/Base_file";
 import { HomePage } from "../HomePage";
 import { ContactUsPage } from "../ContactUsPage";
 import { LoginPage } from "../LoginPage";
+import { SignupPageReal } from "../SignupPageReal";
 
 export class PageManager {
+
     get page(): Page {
         return page.instance!;
     }
@@ -24,5 +26,9 @@ export class PageManager {
 
     createLoginPage() {
         return new LoginPage();
+    }
+
+    createSignupPage() {
+       return new SignupPageReal();
     }
 }
