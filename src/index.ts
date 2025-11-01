@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config ({ path: './env/.env'});
 
 // Setting retry value from environment variables or defaulting to '0'
-const parallelValue = process.env.PARALLEL || '1';
-const retryValue = process.env.RETRY || '3';
+const parallelValue = process.env.PARALLEL || '3';
+const retryValue = process.env.RETRY || '1';
 
 
 //Define a common command string for running cucumber tests
@@ -31,6 +31,7 @@ const profiles: ProfileCommands = {
     regression: `${common} --tags "@regression"`,
     login: `${common} --tags "@login"`,
     contactUs: `${common} --tags "@contact-us"`,
+    signupReal: `${common} --tags "@signupReal"`,
 }
 
 //Get the third command-line argument and assign it to the profile

@@ -1,3 +1,4 @@
+@signupReal
 Feature: Successfull login for Real
 
     Scenario: Validate the signup page

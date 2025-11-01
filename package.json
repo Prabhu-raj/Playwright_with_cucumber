@@ -11,7 +11,9 @@
     "smoke": "cucumber-js --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@smoke'",
     "regression": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/*.feature --tags '@regression'",
     "ignore": "cucumber-js --require-module ts-node/register --require ./src/**/hooks/hooks.ts --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeout.ts src/features/**/Contact_Us.feature --tags 'not @ignore'",
-    "real": "cucumber-js src/features/**/Singuppage.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html"
+    "real": "cucumber-js src/features/**/Singuppage.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
+    "typesense": "cucumber-js src/features/**/LoginCloud.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html",
+    "JHT_test": "cucumber-js src/features/**/Tech.feature --require-module ts-node/register --require src/step-definitions/**/**/**/*.ts --require src/utils/cucumber-timeout.ts -f json:./reports/report.json --format html:./reports/report.html"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +23,7 @@
     "@colors/colors": "^1.6.0",
     "@cucumber/cucumber": "^12.1.0",
     "@faker-js/faker": "^9.9.0",
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.56.0",
     "@types/node": "^24.2.0",
     "dotenv": "^17.2.1",
     "ts-node": "^10.9.2",

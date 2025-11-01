@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { BasePage } from "./base/BasePage";
 
 export class SignupPageReal extends BasePage {
@@ -15,11 +16,11 @@ export class SignupPageReal extends BasePage {
     }
 
     public async fillUserName (): Promise<void> {
-        await this.page.getByTestId('username').fill("Testreal6");
+        await this.page.getByTestId('username').fill("Testreal");
     }
 
     public async fillEmail (): Promise<void> {
-        await this.page.getByTestId('emailAddress').fill("Testreal6@gmail.com");
+        await this.page.getByTestId('emailAddress').fill("Testreal7@gmail.com");
     }
 
     public async selectCountry (): Promise<void> {
@@ -44,6 +45,12 @@ export class SignupPageReal extends BasePage {
 
     public async createAccount (): Promise<void> {
         await this.page.getByRole('button', { name: 'Create Account' }).click();
+    }
+
+    public async registrationPage (): Promise<void> {
+        await expect(this.page).toHaveURL("https://bolt.playrealbrokerage.com/onboarding/application-form");
+
+        // await expect(this.page.getByRole('button', { name: 'Create Account' })).toHaveText('THANK YOU');
     }
 
     

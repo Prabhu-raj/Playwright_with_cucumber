@@ -4,7 +4,9 @@ import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "../../page-objects/LoginPage";
-import { SignupPageReal } from "../../page-objects/SignupPageReal";
+import { SignupPageReal } from "../../page-objects/HomePage";
+import { LoginTypeSensePage } from "../../page-objects/LoginTypeSensePage";
+import { TechPage } from "../../page-objects/TechPage"
 
 
 export class CucumberWorld extends World {
@@ -14,6 +16,9 @@ export class CucumberWorld extends World {
     public contactUsPage: ContactUsPage;
     public loginPage: LoginPage;
     public signupPageReal: SignupPageReal;
+    public loginTypeSensePage: LoginTypeSensePage;
+    public techPage: TechPage;
+
 
     //Base URL
     private url?: string;
@@ -32,7 +37,9 @@ export class CucumberWorld extends World {
         this.homePage = this.pageManager.createHomePage();
         this.contactUsPage = this.pageManager.createContactUspage();
         this.loginPage = this.pageManager.createLoginPage();
-        this.signupPageReal = this.pageManager.createSignupPage();
+        this.signupPageReal = this.pageManager.createSignupPageReal();
+        this.loginTypeSensePage = this.pageManager.createLoginTypesensePage();
+        this.techPage = this.pageManager.createTechPage();
     }
 
 

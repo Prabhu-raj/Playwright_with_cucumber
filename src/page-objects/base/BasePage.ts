@@ -6,6 +6,7 @@ import { config as loadEnv } from "dotenv";
 const env = loadEnv({ path: "./env/.env" });
 
 export class BasePage {
+  getByRole: any;
   get page(): Page {
     return page.instance!;
   }
@@ -13,6 +14,7 @@ export class BasePage {
   //Promise<void> in TypeScript when you’re defining an async function that doesn’t explicitly return a value.
   public async navigate(url: string): Promise<void> {
     await this.page.goto(url);
+    await this.page.getByRole('button', { name: 'Allow all cookies' }).click()
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {
@@ -43,7 +45,7 @@ export class BasePage {
     page.instance = allPages[allPages.length - 1];
 
     //Bring the newly assigned tab to the front (Make it active)
-    await this.page.bringToFront();
+    await this.page.bringToFront(); 
 
     // //Ensure the newly assigned tab is also fully maximised
     // await this.page.setViewportSize({
