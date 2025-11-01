@@ -56,7 +56,8 @@ import { ContactUsPage } from "../../page-objects/ContactUsPage";
 BeforeAll(async function () {
   console.log("Launching single Chrome instance...and Executing test suite...");
   browser.instance = await chromium.launch({ headless: false });
-  context.instance = await browser.instance.newContext({viewport: { width: 1920, height: 1080 },
+  context.instance = await browser.instance.newContext({
+    viewport: { width: 1920, height: 1080 },
   });
   
   page.instance = await context.instance.newPage();
@@ -76,6 +77,9 @@ Before(async function () {
   this.homePage = this.pageManager.createHomePage();
   this.contactUsPage = this.pageManager.createContactUspage();
   this.loginPage = this.pageManager.createLoginPage();
+  this.signupPageReal = this.pageManager.createSignupPageReal();
+  this.loginTypeSensePage = this.pageManager.createLoginTypesensePage();
+  this.techPage = this.pageManager.createTechPage();
 
 });
 

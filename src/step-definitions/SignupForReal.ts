@@ -93,9 +93,9 @@ When("Click on the Create Account", async function (this: CucumberWorld) {
     await this.signupPageReal.createAccount();
 })
 
-Then("I should be land on the registration process page", async () => {
+Then("I should be land on the registration process page", async function (this: CucumberWorld) {
     await page.instance!.waitForTimeout(5000);
-    // await expect(page).toHaveURL("https://bolt.playrealbrokerage.com/onboarding/application-form");
-    await expect(page.instance!).toHaveURL('https://bolt.playrealbrokerage.com/onboarding/application-form');
+    await this.signupPageReal.registrationPage();
+    // await expect(page.instance!).toHaveURL('https://bolt.playrealbrokerage.com/onboarding/application-form');
     
 })
