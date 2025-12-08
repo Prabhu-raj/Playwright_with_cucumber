@@ -1,5 +1,6 @@
 import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "@playwright/test";
+import minimist from "minimist";
 // import { pageFixture } from "../../logger/browserContextFixture";
 import { page, context, browser } from "../Base_file";
 import { PageManager } from "../../page-objects/base/PageMangager";
@@ -53,13 +54,32 @@ import { ContactUsPage } from "../../page-objects/ContactUsPage";
 // let browser: Browser;
 
 //BeforeAll hook: Runs once before all scenarios
-BeforeAll(async function () {
+BeforeAll(async function (this: any) {
   console.log("Launching single Chrome instance...and Executing test suite...");
-  browser.instance = await chromium.launch({ headless: false });
+
+  const browserName = this.parameters.browser || "chromium";
+  console.log("Starting browser:", browserName);
+
+  console.log(`🌐 Launching browser: ${browserName}`);
+
+  switch (browserName) {
+    case "chromium":
+      browser.instance = await chromium.launch({ headless: false });
+      break;
+    case "firefox":
+      browser.instance = await firefox.launch({ headless: false });
+      break;
+    case "webkit":
+      browser.instance = await webkit.launch({ headless: false });
+      break;
+    default:
+      throw new Error(`Invalid browser name: ${browserName}`);
+  }
+
+  // browser.instance = await chromium.launch({ headless: false });
   context.instance = await browser.instance.newContext({
     viewport: { width: 1920, height: 1080 },
   });
-  
   page.instance = await context.instance.newPage();
 });
 

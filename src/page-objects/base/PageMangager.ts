@@ -4,7 +4,7 @@ import { page, context, browser } from "../../step-definitions/Base_file";
 import { HomePage } from "../HomePage";
 import { ContactUsPage } from "../ContactUsPage";
 import { LoginPage } from "../LoginPage";
-import { SignupPageReal } from "../HomePage";
+import { SignupPageReal } from "../SignupPageReal";
 import { LoginTypeSensePage } from "../LoginTypeSensePage";
 import { TechPage } from "../TechPage";
 

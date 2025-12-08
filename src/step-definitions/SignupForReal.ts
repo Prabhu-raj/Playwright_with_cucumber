@@ -1,5 +1,5 @@
 import { Given, Then, When, } from '@cucumber/cucumber'
-import { chromium, Browser, expect, Page } from "@playwright/test";
+import { chromium, Browser, expect, Page, selectors } from "@playwright/test";
 import { CucumberWorld } from "./world/CucumberWorld";
 import { BasePage } from '../page-objects/base/BasePage';
 import { browser, page } from './Base_file';
@@ -8,9 +8,9 @@ import { browser, page } from './Base_file';
 // let browser: Browser;
 // let context: any;
 // let page: Page;
-const URL = "https://bolt.playrealbrokerage.com/"
+const URL = "https://careers.pei.group/registration.aspx"
 
-Given("I navigate to the Real web URL", async function (this: CucumberWorld) {
+Given("Navigate to the PEI web URL", async function (this: CucumberWorld) {
     // browser = await chromium.launch({headless: false});
     // context = await browser.newContext({
     //     viewport: {width: 1920, height: 1080}
@@ -22,80 +22,74 @@ Given("I navigate to the Real web URL", async function (this: CucumberWorld) {
     // await page.instance!.goto("https://bolt.playrealbrokerage.com/login"); // using normal method
 
     await this.basePage.navigate(URL); // using POM 
+    // await page.instance?.waitForTimeout(5000)
 })
 
-When("I click on the Join Real", async function (this: CucumberWorld) {
-    // await page.instance!.getByRole('link', { name: 'Join Real' }).click(); // using normal method
-
-    await this.signupPageReal.clickOnRealButton(); // using POM
+When("Select how did you hear about us", async function (this: CucumberWorld) {
+    await page.instance?.waitForTimeout(2000)
+    await this.signupPageReal.selectreference();
 })
 
-When("Enter the firstName", async function (this: CucumberWorld) {
-    await page.instance!.waitForTimeout(2000);
-    // await page.instance!.getByTestId('firstName').fill("Test"); // using normal method
-
-    await this.signupPageReal.fillFirstName(); // using POM
+When("Select LinkedIn", async function (this: CucumberWorld) {
+    // await page.instance?.waitForTimeout(5000)
+    await this.signupPageReal.selectLinkedIn();
+    // await page.instance?.pause();
 })
 
-When("Enter the lastName", async function (this: CucumberWorld) {
-    // await page.instance!.getByTestId('lastName').fill("real"); // using normal method
-
-    await this.signupPageReal.fillLastName(); // using POM
+When("Enter forenames", async function (this: CucumberWorld) {
+    // await page.instance?.waitForTimeout(5000)
+    await this.signupPageReal.fillForenames();
+    // await page.instance?.pause();
 })
 
-When("Enter username", async function (this: CucumberWorld) {
-    // await page.instance!.getByTestId('username').fill("Testreal5"); // using normal method
+When("Enter surname", async function (this: CucumberWorld) {
 
-    await this.signupPageReal.fillUserName(); // using POM
+    await this.signupPageReal.fillSurname();
 })
 
 When("Enter email", async function (this: CucumberWorld) {
-    // await page.instance!.getByTestId('emailAddress').fill("Testreal5@gmail.com"); // using normal method
 
-    await this.signupPageReal.fillEmail(); // using POM
+    await this.signupPageReal.fillEmailAddress();
 })
 
-When("select the country", async function (this: CucumberWorld) {
-    // await page.instance!.getByTestId('country').click(); page.instance!.getByRole('option', { name: 'United States' }).click(); // using normal method
+When("Confirm email address", async function (this: CucumberWorld) {
 
-    await this.signupPageReal.selectCountry();
+    await this.signupPageReal.confirmEmailAddress();
 })
 
-When("Enter the password", async function (this: CucumberWorld) {
-    // await page.instance!.getByTestId('password').fill("Testtest@1234"); // using normal method
+When("Confirm password", async function (this: CucumberWorld) {
 
-    await this.signupPageReal.fillPassword();
+    await this.signupPageReal.confirmPassword();
 })
 
-When("Renter the password confirmation", async function (this: CucumberWorld) {
-    await page.instance!.waitForTimeout(2000);
-    // await page.instance!.getByTestId('confirmPassword').fill("Testtest@1234");  
-    // await page.instance!.pause();  
-    await this.signupPageReal.reFillPassword();
+When("Select Yes for do you currently work with us", async function (this: CucumberWorld) {
+
+    await this.signupPageReal.currentlyWorkWithUs();
 })
 
-When("Confirm the check boxI", async function (this: CucumberWorld) {
-    // await page.instance!.getByRole('checkbox', { name: 'terms' }).check(); 
+When("Select yes for receiving alers from the company", async function (this: CucumberWorld) {
+
+    await this.signupPageReal.jobAlerts();
+    // await page.instance?.pause();
+})
+
+When("Select specific role inoformation", async function (this: CucumberWorld) {
+
+    await this.signupPageReal.specificRole();
+})
+
+When("Select preferred location", async function (this: CucumberWorld) {
+
+    await this.signupPageReal.selectLocation();
+})
+
+When("Confirm the check box", async function (this: CucumberWorld) {
 
     await this.signupPageReal.checkBoxI();
 })
 
-When("Confirm the second check boxII", async function (this: CucumberWorld) {
-    // await page.instance!.getByRole('checkbox', { name: 'permission' }).check();
-
-    await this.signupPageReal.checkBoxII();
-})
-
-When("Click on the Create Account", async function (this: CucumberWorld) {
-    await page.instance!.waitForTimeout(2000);
-    // await page.instance!.getByRole('button', { name: 'Create Account' }).click();
-
-    await this.signupPageReal.createAccount();
-})
-
-Then("I should be land on the registration process page", async function (this: CucumberWorld) {
-    await page.instance!.waitForTimeout(5000);
-    await this.signupPageReal.registrationPage();
-    // await expect(page.instance!).toHaveURL('https://bolt.playrealbrokerage.com/onboarding/application-form');
+When("Upload CV", async function (this: CucumberWorld) {
     
+    await this.signupPageReal.uploadCV();
+    // await page.instance?.pause();
 })

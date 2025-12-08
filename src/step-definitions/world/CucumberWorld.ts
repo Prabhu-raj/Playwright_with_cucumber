@@ -1,10 +1,10 @@
-import { World, setWorldConstructor, IWorldOptions } from "@cucumber/cucumber";
+import { World, IWorldOptions, setWorldConstructor } from "@cucumber/cucumber";
 import { PageManager } from "../../page-objects/base/PageMangager";
 import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "../../page-objects/LoginPage";
-import { SignupPageReal } from "../../page-objects/HomePage";
+import { SignupPageReal } from "../../page-objects/SignupPageReal";
 import { LoginTypeSensePage } from "../../page-objects/LoginTypeSensePage";
 import { TechPage } from "../../page-objects/TechPage"
 
@@ -27,6 +27,7 @@ export class CucumberWorld extends World {
     private firstName?: string;
     private lastName?: string;
     private emailAddress?: string;
+    // signupPage: import("/Users/prabhuraj/Documents/Project/Playwright_with_cucumber/src/page-objects/HomePage").SignupPageReal;
 
         //{ attach, log, parameters }: IWorldOptions are required in the constructor of your CucumberWorld class to 
     //inherit functionalities from the base World class and to initialize your PageManager and BasePage.
