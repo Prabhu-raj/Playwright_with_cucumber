@@ -1,11 +1,17 @@
+import { spawn } from "child_process";
 import { exec } from "child_process";
 import dotenv from 'dotenv';
 dotenv.config ({ path: './env/.env'});
 
 // Setting retry value from environment variables or defaulting to '0'
-const parallelValue = process.env.PARALLEL || '3';
-const retryValue = process.env.RETRY || '1';
+const parallelValue = process.env.PARALLEL || '0';
+const retryValue = process.env.RETRY || '0';
 
+// Read browsers list
+const browsers =
+  (process.env.BROWSERS || "chromium")
+    .split(",")
+    .map(b => b.trim());
 
 //Define a common command string for running cucumber tests
 const common = `./src/features/*.feature \
@@ -42,12 +48,17 @@ const profile = process.argv[2];
 //command is the full command to run the tests for the selected profile
 let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contact-us']}`;
 
-//Print the constructed command
-console.log(command);
 
-//Execute the command
-exec(command, { encoding: 'utf-8'}, (error: Error | null, stdout: string) =>{
-  //Log the output of the command
+// console.log(`Running tests on browser: ${browser}`);
+
+// const command = `npx cucumber-js ${common}`;
+// //Print the constructed command
+// console.log("Executing: " + command);
+
+
+
+// //Execute the command
+exec(command, { encoding: "utf-8" }, (error, stdout) => {
   console.log(stdout);
 
   //check if there was an error during execution
@@ -56,3 +67,24 @@ exec(command, { encoding: 'utf-8'}, (error: Error | null, stdout: string) =>{
     throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥')
   }
 });
+
+// MAIN LAUNCHER
+async function run() {
+  for (const browser of browsers) {
+    console.log(`\n🚀 Running tests on: ${browser}\n`);
+
+    const args = [
+      ...common,
+      "--world-parameters",
+      `{\"browser\":\"${browser}\"}`
+    ];
+
+    // Spawn separate process per browser
+    spawn("npx", ["cucumber-js", ...args], {
+      stdio: "inherit",
+      shell: true
+    });
+  }
+}
+
+run();

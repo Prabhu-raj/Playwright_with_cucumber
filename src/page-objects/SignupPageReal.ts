@@ -3,55 +3,84 @@ import { BasePage } from "./base/BasePage";
 
 export class SignupPageReal extends BasePage {
    
-    public async clickOnRealButton (): Promise<void> {
-        await this.page.getByRole('link', { name: 'Join Real' }).click();
+    public async selectreference (): Promise<void> {
+        await this.page.waitForSelector('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_InfluenceToApply"]')
+        await this.page.locator('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_InfluenceToApply"]').selectOption({index: 4});
     }
 
-    public async fillFirstName (): Promise<void> {
-        await this.page.getByTestId('firstName').fill("Test");
+    public async selectLinkedIn (): Promise<void> {
+        await this.page.waitForSelector('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_InfluenceToApplyDetail"]')
+        await this.page.locator('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_InfluenceToApplyDetail"]').selectOption({index: 1});
     }
 
-    public async fillLastName (): Promise<void> {
-        await this.page.getByTestId('lastName').fill("real");
+    public async fillForenames (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_FirstName"]').fill("TEST TEST")
+
     }
 
-    public async fillUserName (): Promise<void> {
-        await this.page.getByTestId('username').fill("Testreal");
+    public async fillSurname (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Surname"]').fill("@#TEST Surname")
+
     }
 
-    public async fillEmail (): Promise<void> {
-        await this.page.getByTestId('emailAddress').fill("Testreal7@gmail.com");
+    public async fillEmailAddress (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Email"]').fill("test@gmail.com")
+
     }
 
-    public async selectCountry (): Promise<void> {
-        await this.page.getByTestId('country').click(); this.page.getByRole('option', { name: 'United States' }).click();
+    public async confirmEmailAddress (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_Email_Copy1"]').fill("test@gmail.com")
+
     }
 
-    public async fillPassword (): Promise<void> {
-        await this.page.getByTestId('password').fill("Testtest@1234");
+    public async confirmPassword (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Password_txtPassword"]').fill("test@1234")
+
     }
 
-    public async reFillPassword (): Promise<void> {
-        await this.page.getByTestId('confirmPassword').fill("Testtest@1234");  
+    public async currentlyWorkWithUs (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_ctl46_CanC_IsEmployee_0"]').check();
+
+    }
+
+    public async jobAlerts (): Promise<void> {
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_OccasionalContact_0"]').check();
+
+    }
+
+    public async specificRole (): Promise<void> {
+        await this.page.locator('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_PreferredIndustry2"]').selectOption({index: 10});
+
+    }
+
+    public async selectLocation (): Promise<void> {
+        await this.page.locator('//select[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_PreferredLocation2"]').selectOption({index: 5});
+
     }
 
     public async checkBoxI (): Promise<void> {
-        await this.page.getByRole('checkbox', { name: 'terms' }).check(); 
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_ctl91_fcConsentSettings_ConsentOptionID"]').check()
+
     }
 
-    public async checkBoxII (): Promise<void> {
-        await this.page.getByRole('checkbox', { name: 'permission' }).check();
+    public async uploadCV (): Promise<void> {
+        await this.page.locator('//button[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ctl01_btnUpload"]').click();
+        await this.page.waitForTimeout(5000);
+        await this.page.waitForSelector('iframe[name^="fancybox-frame"]');
+
+    // Get iframe (name might be dynamic so we use partial match)
+    const frame = this.page.frames().find(f => f.name().startsWith('fancybox-frame'));
+
+    if (!frame) {
+        throw new Error("❌ Upload iframe not found. Test failed.");
     }
 
-    public async createAccount (): Promise<void> {
-        await this.page.getByRole('button', { name: 'Create Account' }).click();
-    }
+    // Upload file using input[type="file"]
+    await frame.locator('#ctl00_FormContent_ctl00_radUploadfile0').setInputFiles('/Users/prabhuraj/Downloads/Prabhu_CV.pdf');
 
-    public async registrationPage (): Promise<void> {
-        await expect(this.page).toHaveURL("https://bolt.playrealbrokerage.com/onboarding/application-form");
+    await frame.locator('#ctl00_FormContent_ctl00_btnUpload').click();
 
-        // await expect(this.page.getByRole('button', { name: 'Create Account' })).toHaveText('THANK YOU');
-    }
-
+    await expect(this.page.locator("//span[@id='ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ctl01_lblFileName']")).toContainText("Prabhu_CV.pdf")
     
+}
 }

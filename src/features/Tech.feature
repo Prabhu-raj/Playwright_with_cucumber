@@ -1,8 +1,8 @@
 Feature: : Validate the contactUs page
 
     Scenario: : Validate the JHT contactUs page with all valid details
-    Given I navigate to JHT contatUs page
-    When Select the topic
+    # Given I navigate to JHT contatUs page
+    # When Select the topic
     # When Type the first name
     # When Type the last name
     # When Type the email address

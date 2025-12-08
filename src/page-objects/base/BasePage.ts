@@ -14,7 +14,10 @@ export class BasePage {
   //Promise<void> in TypeScript when you’re defining an async function that doesn’t explicitly return a value.
   public async navigate(url: string): Promise<void> {
     await this.page.goto(url);
-    await this.page.getByRole('button', { name: 'Allow all cookies' }).click()
+    // await this.page.getByRole('button', { name: 'Allow all cookies' }).click()
+    // await this.page.waitForTimeout(2000);
+    // await this.page.waitForSelector('//input[@id="epdsubmit"]')
+    // await this.page.click('//input[@id="epdsubmit"]');
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {
