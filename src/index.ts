@@ -1,89 +1,56 @@
-import { spawn } from "child_process";
-import { exec } from "child_process";
-import dotenv from 'dotenv';
-dotenv.config ({ path: './env/.env'});
+import { spawnSync } from "child_process";
+import { execution, config } from "./config/env";
 
-// Setting retry value from environment variables or defaulting to '0'
-const parallelValue = process.env.PARALLEL || '0';
-const retryValue = process.env.RETRY || '0';
+const browsers = execution.browsers.length ? execution.browsers : [config.browser.name];
 
-// Read browsers list
-const browsers =
-  (process.env.BROWSERS || "chromium")
-    .split(",")
-    .map(b => b.trim());
+const common = [
+  "./src/features/*.feature",
+  "--require-module",
+  "ts-node/register",
+  "--require",
+  "./src/step-definitions/**/*.ts",
+  "--require",
+  "./src/utils/cucumber-timeout.ts",
+  "-f",
+  "json:./reports/report.json",
+  "--format",
+  "html:./reports/report.html",
+  "--parallel",
+  String(execution.parallel),
+  "--retry",
+  String(execution.retry),
+  "--tags",
+  "not @ignore",
+];
 
-//Define a common command string for running cucumber tests
-const common = `./src/features/*.feature \
-  --require-module ts-node/register \
-  --require ./src/step-definitions/**/**/*.ts \
-  --require ./src/utils/cucumber-timeout.ts \
-  -f json:./reports/report.json \
-  --format html:./reports/report.html \
-  --parallel ${parallelValue} \
-  --retry ${retryValue} \
-  --tags "not @ignore"`;
+const profiles: Record<string, string[]> = {
+  smoke: [...common, "--tags", "@smoke"],
+  regression: [...common, "--tags", "@regression"],
+  login: [...common, "--tags", "@login"],
+  contactUs: [...common, "--tags", "@contact-us"],
+  signupReal: [...common, "--tags", "@signupReal"],
+};
 
+const profile = process.argv[2] ?? "smoke";
 
-//Define an interface for the profiles object
-//It defines an interface where each key is a string and its value is also a string
-interface ProfileCommands {
-    [key: string]: string;
-}
-
-//Define a command strings for different test profiles
-const profiles: ProfileCommands = {
-    smoke: `${common} --tags "@smoke"`,
-    regression: `${common} --tags "@regression"`,
-    login: `${common} --tags "@login"`,
-    contactUs: `${common} --tags "@contact-us"`,
-    signupReal: `${common} --tags "@signupReal"`,
-}
-
-//Get the third command-line argument and assign it to the profile
-//i.e. smoke, regression etc
-const profile = process.argv[2];
-
-//Construct the command string based on the selected profile
-//command is the full command to run the tests for the selected profile
-let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contact-us']}`;
-
-
-// console.log(`Running tests on browser: ${browser}`);
-
-// const command = `npx cucumber-js ${common}`;
-// //Print the constructed command
-// console.log("Executing: " + command);
-
-
-
-// //Execute the command
-exec(command, { encoding: "utf-8" }, (error, stdout) => {
-  console.log(stdout);
-
-  //check if there was an error during execution
-  if(error) {
-    //throw a new error with a simple message
-    throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥')
-  }
-});
-
-// MAIN LAUNCHER
 async function run() {
-  for (const browser of browsers) {
-    console.log(`\n🚀 Running tests on: ${browser}\n`);
+  for (const browserName of browsers) {
+    console.log(`\n🚀 Running tests on: ${browserName}\n`);
 
     const args = [
-      ...common,
+      ...profiles[profile] ?? profiles.smoke,
       "--world-parameters",
-      `{\"browser\":\"${browser}\"}`
+      `{"browser":"${browserName}"}`,
     ];
 
-    // Spawn separate process per browser
-    spawn("npx", ["cucumber-js", ...args], {
+    const result = spawnSync("npx", ["cucumber-js", ...args], {
       stdio: "inherit",
-      shell: true
+      shell: true,
     });
+
+    if (result.status !== 0) {
+      process.exit(result.status ?? 1);
+    }
   }
 }
 

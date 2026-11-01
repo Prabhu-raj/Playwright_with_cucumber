@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./base/BasePage";
+import { testUsers } from "../config/env";
 
 export class SignupPageReal extends BasePage {
    
@@ -14,27 +15,27 @@ export class SignupPageReal extends BasePage {
     }
 
     public async fillForenames (): Promise<void> {
-        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_FirstName"]').fill("TEST TEST")
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_FirstName"]').fill(testUsers.pei.firstName)
 
     }
 
     public async fillSurname (): Promise<void> {
-        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Surname"]').fill("@#TEST Surname")
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Surname"]').fill(testUsers.pei.lastName)
 
     }
 
     public async fillEmailAddress (): Promise<void> {
-        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Email"]').fill("test@gmail.com")
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Email"]').fill(testUsers.pei.email)
 
     }
 
     public async confirmEmailAddress (): Promise<void> {
-        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_Email_Copy1"]').fill("test@gmail.com")
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_Email_Copy1"]').fill(testUsers.pei.email)
 
     }
 
     public async confirmPassword (): Promise<void> {
-        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Password_txtPassword"]').fill("test@1234")
+        await this.page.locator('//input[@id="ctl00_ctl00_ctl00_ContentContainer_mainContent_RegistrationHolder_ITSRegistrationControl_CanC_Password_txtPassword"]').fill(testUsers.pei.password)
 
     }
 
