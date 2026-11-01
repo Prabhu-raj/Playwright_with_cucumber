@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./base/BasePage";
+import { testUsers } from "../config/env";
 
 export class LoginTypeSensePage extends BasePage {
   
@@ -11,13 +12,13 @@ export class LoginTypeSensePage extends BasePage {
   public async fillemail(): Promise<void> {
     await this.page
       .getByRole("textbox", { name: "Email *" })
-      .fill("prabhurajpudi@gmail.com");
+      .fill(testUsers.typesense.email);
   }
 
   public async fillPassword(): Promise<void> {
     await this.page
       .getByRole("textbox", { name: "Password *" })
-      .fill("Typesense@1234");
+      .fill(testUsers.typesense.password);
   }
 
   public async clickTypesenseLoginButton(): Promise<void> {

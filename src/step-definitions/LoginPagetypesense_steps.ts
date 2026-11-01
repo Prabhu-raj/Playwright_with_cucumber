@@ -1,12 +1,12 @@
-import {expect, Page} from '@playwright/test'
+import { expect, Page } from '@playwright/test'
 import { Given, When, Then } from '@cucumber/cucumber'
 import { CucumberWorld } from './world/CucumberWorld'
 import { page } from '../step-definitions/Base_file'
-
+import { urls } from '../config/env'
 
 // let alertText: string;
 
-let URL = "https://cloud.typesense.org/";
+const URL = urls.typesense;
 
 Given('I navigate to the typeSense URL', async function (this: CucumberWorld) {
 

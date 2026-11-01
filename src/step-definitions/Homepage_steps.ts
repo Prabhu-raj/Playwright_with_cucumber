@@ -6,12 +6,13 @@ import { CucumberWorld } from "./world/CucumberWorld";
 // import { pageFixture } from "../logger/browserContextFixture";
 import logger from "../logger/logger";
 import { ur } from "@faker-js/faker/.";
+import { urls } from "../config/env";
 
 // let browser: Browser;
 // let context: BrowserContext;
 // let page: Page;
 
-const url = "https://www.webdriveruniversity.com/";
+const url = urls.webdriverUniversity;
 
 Given("I navigate to the WebdriverUniversity homepage", async function (this: CucumberWorld) {
     /* browser.instance = await chromium.launch({ headless: false });

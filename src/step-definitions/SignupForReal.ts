@@ -3,12 +3,12 @@ import { chromium, Browser, expect, Page, selectors } from "@playwright/test";
 import { CucumberWorld } from "./world/CucumberWorld";
 import { BasePage } from '../page-objects/base/BasePage';
 import { browser, page } from './Base_file';
-
+import { urls } from '../config/env';
 
 // let browser: Browser;
 // let context: any;
 // let page: Page;
-const URL = "https://careers.pei.group/registration.aspx"
+const URL = urls.peiRegistration
 
 Given("Navigate to the PEI web URL", async function (this: CucumberWorld) {
     // browser = await chromium.launch({headless: false});
